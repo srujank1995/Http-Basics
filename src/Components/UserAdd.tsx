@@ -1,17 +1,54 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import './UserAdd.css'
+import axios from "axios";
 
-const UserAdd = () => {
+const UserAdd:React.FC<{
+  Axiosfn:() => void;
+}> = (props) => {
+
+  const {Axiosfn} = props;
+
   const  [email, setEmail] = useState('')
   const  [password, setPassword] = useState('')
 
+  const RefPass:any = useRef();
+
   const SubBtn=() =>{
-    
+    const UsrReq = {
+      email,
+      password,
+      id: Math.random(),
+      date: new Date()
+    }
+    console.table(UsrReq)
+    setEmail('')
+    setPassword('')
+
+    axios({
+      method:'post',
+      url:'http://localhost:3001/add',
+      data: UsrReq
+      }).then(
+        (res)=>{console.log("res", res)
+        Axiosfn();}
+      ).catch(
+        (err)=>{console.log("error", err)}
+      )
   }
+  const ShowPass=() =>{
+    if (RefPass.current){
+      if (RefPass.current.type == 'password'){
+        RefPass.current.type = 'text'
+      }else{
+        RefPass.current.type='password'
+    } 
+  }
+}
   return (
-    <div className="login-page" >
+    <div>
       <form >
       <div>
-        <input 
+        <input className="input"
           type="text"
           id="email"
           value={email}
@@ -22,10 +59,11 @@ const UserAdd = () => {
         />
       </div>
       <div>
-        <input 
+        <input className="password"
           type="password"
           id="password"
           value={password}
+          ref={RefPass}
           onChange={(e) => {
           setPassword(e.target.value);
           }}
@@ -33,7 +71,12 @@ const UserAdd = () => {
           autoComplete="yes"
         />
       </div>
-      <button  type="button" onClick={SubBtn}>Submit</button>
+      <button  
+      type="button" 
+      className="button" 
+      
+      onClick={SubBtn}>Submit </button>
+      <button onClick={ShowPass}>&#128065;</button>
       </form>
     </div>
   );

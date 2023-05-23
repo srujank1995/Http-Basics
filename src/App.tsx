@@ -5,6 +5,7 @@ import UserAdd from "./Components/UserAdd";
 
 const App = () => {
   const [users, setUsers] = useState([]);
+
   const  Axiosfn =() =>{
     axios.get("http://localhost:3001/users")
     .then((res) => {
@@ -29,9 +30,9 @@ const App = () => {
   return (
     <div className="App">
       <h2>IDs List</h2>
-      {Userlog}
+     <div className="obj">{Userlog}</div> 
       <br></br>
-      <UserAdd/>
+      <UserAdd  Axiosfn={Axiosfn}/>
     </div>
   );
 };

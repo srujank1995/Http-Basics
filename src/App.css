@@ -1,6 +1,17 @@
 .App{
     margin: 2%;
-    font-family: monospace;
-    font-size: large;
-    
+    padding: 1%;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: larger;
+    border: 1px solid black;
+    width: 50%;
+    background:linear-gradient(to right, #df6a2f , #ef2525)
+}
+
+.obj{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: larger;
+    font-weight: 400;
+    color: rgb(32, 31, 31);
+
 }
