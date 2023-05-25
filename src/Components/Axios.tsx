@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 const AxiosMainFn = () =>{
     const [users, setUsers] = useState([]);
 
-    const  Axiosfn =() =>{
+    const  Axiosfn:any =() =>{
       axios.get("http://localhost:3001/users")
       .then((res) => {
         const { allUsers } = res.data;

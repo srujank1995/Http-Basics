@@ -2,9 +2,7 @@ import React, { useRef, useState } from "react";
 import './UserAdd.css'
 import axios from "axios";
 
-const UserAdd:React.FC<{
-  Axiosfn:() => void;
-}> = (props) => {
+const UserAdd = (props:any) => {
 
   const {Axiosfn} = props;
 
